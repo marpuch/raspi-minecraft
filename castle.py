@@ -1,6 +1,25 @@
 import mcpi.block as block
 import mcpi.minecraft as minecraft
 
+"""
+Minecraft castle generator
+
+Just a simple script capable of generating a castle.
+Basic security measures are provided like walls contain
+liquid flowing lava in case someone thinks he's smart
+and tries to dig through. There is no lava in the floor 
+though.
+
+The castle is generated at the players position.
+A separate method allows to teleport the player on
+top of the highest tower.
+
+TODOs for the future:
+* add gate (serious security concerns)
+* add stairs or ladders (lack of stairs is not a problem 
+  in the creative mode)
+"""
+
 
 class Castle:
 
@@ -214,7 +233,7 @@ class Castle:
         '                                           '
     ]
 
-    c7= [
+    c7 = [
         '                                           ',
         '                                           ',
         '                                           ',
@@ -244,10 +263,10 @@ class Castle:
         '                                           '
     ]
 
-    def __init__(self, mc: minecraft.Minecraft):
+    def __init__(self, mcraft: minecraft.Minecraft):
         self.height = 10
-        self.p = mc.player.getPos()
-        self.mc = mc
+        self.p = mcraft.player.getPos()
+        self.mc = mcraft
 
     def build(self):
         """
@@ -297,6 +316,6 @@ class Castle:
                           b)
 
 
-mc = minecraft.Minecraft.create()
-castle = Castle(mc)
-castle.build()
+if __name__ == "__main__":
+    mc = minecraft.Minecraft.create()
+    Castle(mc).build()
