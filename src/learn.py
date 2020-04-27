@@ -13,7 +13,9 @@ class MC:
         self.box_size = 10
 
     def put(self, x, y, z, b=block.STONE):
-        if x > self.box_size or y > self.box_size or z > self.box_size:
+        if x > self.box_size or x < 0 or \
+           y > self.box_size or y < 0 or \
+           z > self.box_size or z < 0:
             print("Block must be in the box of size {} {}".format(self.box_size, (x, y, z)))
             return
         self.mc.setBlock(self.pos.x + x, self.pos.y + y, self.pos.z + z, b)
